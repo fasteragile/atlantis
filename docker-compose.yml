@@ -1,5 +1,4 @@
 version: '3'
-# Remove logging, volumes from services for local docker.
 services:
   db:
     image: postgres
