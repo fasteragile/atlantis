@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To start docker containers
+* docker-compose up
 
-Things you may want to cover:
+To stop docker containers
+* docker-compose down
 
-* Ruby version
+Env vars are set under enviornment in docker-compose.yml. They can be set in an .env file if desired.
+* Replace environment with:
+env_file:
+      - .env
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+PG is running on a non standard port because I have PG running locally, and will cause bind error.
+Set in docker-compose PORTS:
+ - "5433:5433"
+ 
+No migrations have been run.
+ 
