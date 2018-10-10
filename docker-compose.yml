@@ -1,0 +1,24 @@
+version: '3'
+# Remove logging, volumes from services for local docker.
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "fasteragile!"
+    ports:
+      # - "5432:5432" 
+      # No conflict with existing local running PG
+      - "5433:5433"
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      RAILS_ENV: $RAILS_ENV
+    command: rails s -b '0.0.0.0'      
+    volumes:
+      - .:/app
