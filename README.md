@@ -2,6 +2,8 @@
 
 Only two containers: db(postgres) and web(rails) 
 
+Note: Run bundle install after pulling repo and before running docker-compose up
+
 To start docker containers
 * docker-compose up
 
