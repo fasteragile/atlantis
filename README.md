@@ -1,5 +1,7 @@
 # README
 
+Only two containers: db(postgres) and web(rails) 
+
 To start docker containers
 * docker-compose up
 
