@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+venues = Venue.create({name: 'Joe\'s'}, {name: 'Little House'}, {name:'Federal House Inn'})
+voters = Voter.create({name:'Peter Jackson'}, {name: 'Shana Jackson'})

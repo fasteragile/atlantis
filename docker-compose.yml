@@ -8,6 +8,7 @@ services:
       POSTGRES_PASSWORD: "fasteragile!"
     ports:
       - "5433:5432"
+
   rabbitmq:
     image: "rabbitmq:3-management"
     environment:
@@ -18,8 +19,24 @@ services:
       - "5672:5672"
     volumes:
       - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.config
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:15672"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
 
   message-processor:
+    depends_on:
+      - rabbitmq
+    build: .
+    environment:
+      RAILS_ENV: $RAILS_ENV
+    command: bundle exec rails runner lib/message_processor.rb
+    volumes:
+      - .:/app
+    restart: on-failure
+
+  workers:
     depends_on:
       - rabbitmq
     build: .

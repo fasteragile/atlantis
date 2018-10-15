@@ -1,7 +1,7 @@
 class MessageProcessorJob < ApplicationJob
   queue_as :default
-
-  def perform(*args)
-    # Do something later
+  def perform(json)
+    puts "Worker invoked with #{json}"
+    
   end
 end
