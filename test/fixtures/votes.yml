@@ -1,7 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  integer: 
-
+  value: 1
+  voter: one
+  venue: little_house
 two:
-  integer: 
+  value: 1
+  voter: one
+  venue: little_house
+three:
+  value: -1
+  voter: two
+  venue: little_house

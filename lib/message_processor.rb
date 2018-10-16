@@ -20,7 +20,8 @@ q = ch.queue("votes", auto_delete: true)
 loop {
   q.subscribe(:manual_ack => true) do |delivery_info, properties, payload|
     puts "Received #{payload}, message properties are #{properties.inspect}"
-    MessageProcessorJob.perform_later(payload)
+    safe_payload = JSON.parse(payload)
+    MessageProcessorJob.perform_later(safe_payload)
   end
   sleep 1
 }

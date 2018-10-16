@@ -1,7 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+little_house:
+  name: The Little House Inn and Hostel
 
 two:
-  name: MyString
+  name: B&B 2
+  

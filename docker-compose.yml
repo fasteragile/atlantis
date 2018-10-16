@@ -8,6 +8,8 @@ services:
       POSTGRES_PASSWORD: "fasteragile!"
     ports:
       - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
 
   rabbitmq:
     image: "rabbitmq:3-management"
@@ -46,6 +48,7 @@ services:
     command: bundle exec rake sneakers:run
     volumes:
       - .:/app
+
   api:
     build: .
     ports:
@@ -54,6 +57,9 @@ services:
       - db
     environment:
       RAILS_ENV: $RAILS_ENV
-    command: bundle exec rails s -b '0.0.0.0'
+    command: bash -c "bundle exec rake db:create && bundle exec rake db:migrate && bundle exec rails s -b '0.0.0.0'"
     volumes:
       - .:/app
+
+volumes:
+     pgdata:
