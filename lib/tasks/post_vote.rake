@@ -8,6 +8,11 @@ namespace :vote do
   task :downvote do
     enqueue_vote('{"name":"Woodstock B&B","vote":-1,"voter":{"first_name":"Jack","last_name":"Collier"}}')
   end
+
+  desc "Enqueue an invalid payload that should be rejected"
+  task :junk do
+    enqueue_vote('---csdfsdfdfssd')
+  end
 end
 
 def enqueue_vote(vote_json)
