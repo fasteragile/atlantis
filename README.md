@@ -52,6 +52,7 @@ Start all of the containers with
 Send a test payload:
 
   `docker-compose run api bundle exec rails vote:upvote`
+  
   `docker-compose run api bundle exec rails vote:downvote`
 
 ## Running the tests:
