@@ -41,9 +41,9 @@ class VotesController < ApplicationController
     params.permit(:name, :vote, voter: [:first_name, :last_name])
   end
 
-  # TODO: This is awful. Decide how we want to return errors.
+  # TODO: This is inadequate. Decide how we want to return errors.
   # A 422 is nice and all, but tell them why they got one. ie. which field is
-  # wrong? 
+  # wrong?
   def unprocessable_entity
     respond_to do |format|
       format.json {
