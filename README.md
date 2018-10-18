@@ -90,6 +90,8 @@ Standard rails tests instead of Rspec. Generally, I like to test only one thing
 (ie. one assert) per test. These tests are fairly simple, though, so I cheated
 a bit.
 
+That said, the tests are fairly basic. They should be more extensive. 
+
 ## Other Design Choices
 
 Votes are expected to by +1 / -1, thumbs-up style. Voting by star-rating is not
