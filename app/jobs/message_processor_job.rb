@@ -2,10 +2,7 @@ class MessageProcessorJob < ApplicationJob
   queue_as :default
 
   def perform(json)
-    puts "Worker invoked with #{json}. Posting that payload to HTTP REST API"
-
-    http = HTTParty.post(uri, body: json)
-    puts "Response from REST API: #{http.response}"
+    HTTParty.post(uri, body: json)
   end
 
   # TODO: Works with docker-compose, make this production ready

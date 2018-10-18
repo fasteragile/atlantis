@@ -1,7 +1,7 @@
 # README
 
 ## Containers
-Five containers: db(postgres), api(rails), workers(rails),
+Five containers: db(postgres), api(rails), workers(rails * DISABLED),
 message-processor(lib/message_processor), rabbitmq
 
 ### db
@@ -36,7 +36,9 @@ Returns something like this:
 
 Standard image
 
-### workers
+### workers * DISABLED
+
+This functionality is now called synchronously from the message-processor.
 
 ActiveJob runner using `rake sneakers:run`. Takes JSON payloads enqueued
 by the message-processor and posts them via HTTParty to the REST API.
@@ -93,3 +95,5 @@ Strings, usernames, and passwords not yet extracted.
 
 We do not enforce "1 person, 1 vote". That'd be my next most important feature
 to implement.
+
+CREATE response could be better. 

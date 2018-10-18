@@ -1,15 +1,19 @@
 class VotesController < ApplicationController
+  #rescue_from Exception, with: :unprocessable_entity
+
   def create
-    if (vote = Vote.create(vote_params))
+    if (@vote = Vote.create(vote_params))
       respond_to do |format|
-        format.json { render json: vote }
+        format.json {
+          render json: @vote.as_json(only: [:id, :value],
+                                     methods: [:voter_first_name,
+                                               :voter_last_name,
+                                               :venue_name]) 
+        }
       end
     else
-      respond_to do |format|
-        format.json { render json: vote.errors, status: :unprocessible_entity }
-      end
+      unprocessable_entity
     end
-
   end
 
   def venue
@@ -32,7 +36,18 @@ class VotesController < ApplicationController
     params.require(:name)
     params.require(:vote)
     params.require(:voter).permit([:first_name, :last_name])
-    
+
     params.permit(:name, :vote, voter: [:first_name, :last_name])
+  end
+
+  def errors
+    {
+    }
+  end
+
+  def unprocessable_entity
+    respond_to do |format|
+      format.json { render json: errors, status: :unprocessable_entity }
+    end
   end
 end

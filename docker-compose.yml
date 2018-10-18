@@ -38,16 +38,16 @@ services:
       - .:/app
     restart: on-failure
 
-  workers:
-    depends_on:
-      - rabbitmq
-    build: .
-    environment:
-      RAILS_ENV: $RAILS_ENV
-      WORKERS: "ActiveJob::QueueAdapters::SneakersAdapter::JobWrapper"
-    command: bundle exec rake sneakers:run
-    volumes:
-      - .:/app
+#  workers:
+#    depends_on:
+#      - rabbitmq
+#    build: .
+#    environment:
+#      RAILS_ENV: $RAILS_ENV
+#      WORKERS: "ActiveJob::QueueAdapters::SneakersAdapter::JobWrapper"
+#    command: bundle exec rake sneakers:run
+#    volumes:
+#      - .:/app
 
   api:
     build: .
