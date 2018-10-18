@@ -1,5 +1,3 @@
-require "bunny"
-
 class MessageProcessor
   def run
     connect
@@ -40,10 +38,10 @@ class MessageProcessor
       puts "Response from REST API: #{response}"
 
       if response.success?
-        ch.ack delivery_info.delivery_tag
+        channel.ack delivery_info.delivery_tag
       else
         puts "Message failed to post to REST endpoint: #{payload}, #{response}"
-        ch.nack
+        channel.nack delivery_info.delivery_tag
       end
     end
   end

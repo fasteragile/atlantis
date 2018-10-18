@@ -9,6 +9,11 @@ namespace :vote do
     enqueue_vote('{"name":"Woodstock B&B","vote":-1,"voter":{"first_name":"Jack","last_name":"Collier"}}')
   end
 
+  desc "Post an incomplete test vote to RabbitMQ"
+  task :incomplete do
+    enqueue_vote('{"vote":-1,"voter":{"last_name":"Collier"}}')
+  end
+
   desc "Enqueue an invalid payload that should be rejected"
   task :junk do
     enqueue_vote('---csdfsdfdfssd')

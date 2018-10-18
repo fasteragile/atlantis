@@ -1,5 +1,6 @@
 class VotesController < ApplicationController
-  #rescue_from Exception, with: :unprocessable_entity
+  rescue_from Exception, with: :unprocessable_entity
+  rescue_from ActionController::ParameterMissing, with: :unprocessable_entity
 
   def create
     if (@vote = Vote.create(vote_params))
@@ -41,15 +42,17 @@ class VotesController < ApplicationController
   end
 
   # TODO: This is awful. Decide how we want to return errors.
-  # A 422 is nice and all, but tell them why they got one.
-  def errors
-    {
-    }
-  end
-
+  # A 422 is nice and all, but tell them why they got one. ie. which field is
+  # wrong? 
   def unprocessable_entity
     respond_to do |format|
-      format.json { render json: errors, status: :unprocessable_entity }
+      format.json {
+        render json: "You must send me: " \
+                      "'{name: <string>, vote: [-1,0,1]," \
+                      " voter: {first_name:<string>(optional), " \
+                      " last_name:<string>(optional)}}'",
+        status: :unprocessable_entity
+      }
     end
   end
 end
