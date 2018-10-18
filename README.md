@@ -62,8 +62,7 @@ message-processor is a poll-style client with a 1 second timeout. I decided that
 tabulating votes on NH B&Bs did not require more real time tabulation.  
 
 I'm a little unfamiliar with building RabbitMQ consumers from scratch,
-so given unlimited time I'd spend time understanding how to fold the workers and
-message-processor together and do manual acks when jobs succeed, and subscribe
+so given unlimited time I'd spend time understanding how to subscribe
 to messages as they are pushed instead of polling.
 
 ## Booting it all up
@@ -96,4 +95,4 @@ Strings, usernames, and passwords not yet extracted.
 We do not enforce "1 person, 1 vote". That'd be my next most important feature
 to implement.
 
-CREATE response could be better. 
+CREATE response could be better.
