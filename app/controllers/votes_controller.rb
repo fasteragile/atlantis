@@ -8,7 +8,7 @@ class VotesController < ApplicationController
           render json: @vote.as_json(only: [:id, :value],
                                      methods: [:voter_first_name,
                                                :voter_last_name,
-                                               :venue_name]) 
+                                               :venue_name])
         }
       end
     else
@@ -40,6 +40,8 @@ class VotesController < ApplicationController
     params.permit(:name, :vote, voter: [:first_name, :last_name])
   end
 
+  # TODO: This is awful. Decide how we want to return errors.
+  # A 422 is nice and all, but tell them why they got one.
   def errors
     {
     }
