@@ -77,6 +77,11 @@ Send a test payload:
 
   `docker-compose run api bundle exec rails vote:downvote`
 
+  `docker-compose run api bundle exec rails vote:incomplete`
+
+  `docker-compose run api bundle exec rails vote:junk`
+
+
 ## Running the tests:
 
   `docker-compose -f docker-compose-tests.yml up`
